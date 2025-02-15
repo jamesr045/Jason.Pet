@@ -16,8 +16,8 @@ public class TransparentWindow : MonoBehaviour
     [DllImport("user32.dll")]
     private static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
 
-    [DllImport("user32.dll")]
-    private static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+    [DllImport("user32.dll", SetLastError = true)]
+    static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
     [DllImport("user32.dll")]
     static extern int SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags);
@@ -47,7 +47,8 @@ public class TransparentWindow : MonoBehaviour
     {
         Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
         vec.z = 0f;
-        return vec;
+        Debug.Log(vec);
+        return vec;        
     }
 
     public static Vector3 GetMouseWorldPositionWithZ()
@@ -69,7 +70,7 @@ public class TransparentWindow : MonoBehaviour
     private void Start()
     {
         //MessageBox(new IntPtr(0), "Hello World", "Hello Dialog", 0);
-#if     !UNITY_EDITOR_
+#if !UNITY_EDITOR_
         hWnd = GetActiveWindow();
 
         MARGINS margins = new MARGINS { cxLeftWidth = -1 };
@@ -87,6 +88,7 @@ public class TransparentWindow : MonoBehaviour
     private void Update()
     {
         SetClickthrough(Physics2D.OverlapPoint(GetMouseWorldPosition()) == null);
+
     }
 
     private void SetClickthrough(bool clickthrough)
