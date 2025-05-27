@@ -1,4 +1,4 @@
-This is Jason! He's a little virtual pet frog I made for a 1 week long game jam. He hops around the screen, helping you control media on your PC, and also has opinions on different sites and apps.
+This is Jason! He's a little virtual pet frog I made for a 1 week long game jam at MMU. He hops around the screen, helping you control media on your PC, and also has opinions on different sites and apps.
 
 (if you wanna try him out you can download the "Jason.pet Build" file and run the executable)
 
